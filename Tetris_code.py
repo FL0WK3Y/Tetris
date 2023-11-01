@@ -17,16 +17,16 @@ blocks = [
 [[4, 6, 7, 8], [0, 3, 4, 6], [0, 1, 2, 4],[2, 4, 5, 8]] #<---the ONE_ON_THREE_BLOCK  
 ] 
 
-colors = [ 
-(250,0,90) , (90,250,120),(90,100,250), (150,58,100), (100, 50 ,200),(150,0,0)  ,(0,0,150)
-]
+#colors = [ 
+#(250,0,90) , (90,250,120),(90,100,250), (150,58,100), (100, 50 ,200),(150,0,0)  ,(0,0,150)
+#]
 class Block:
     def __init__(self,x,y) :
         self.x= x
         self.y= y
         self.type =  random.randint(0,len(blocks)-1)
         self.rotation = 0
-        self.colors = colors[random.randint(0,len(colors)-1)]
+        #self.colors = colors[random.randint(0,len(colors)-1)]
     def shape(self):
       return blocks[self.type][self.rotation] 
 def draw_block():
@@ -35,7 +35,7 @@ def draw_block():
            # this is flattening the array and then it checks if it has the index inside of the block shape 
            # rambow color block //pygame.draw.rect(screen,(random.randint(0,255),random.randint(0,255),random.randint(0,255))
            if y * 3 + x in block.shape():
-               pygame.draw.rect(screen,block.colors,
+               pygame.draw.rect(screen,(random.randint(0,255),random.randint(0,255),random.randint(0,255)),
                                 [(x+block.x)*grid_size + x_gap+1, (y + block.y) * grid_size + y_gap + 1, grid_size -2 , grid_size -2] )
 
 def rotate():
@@ -90,7 +90,7 @@ def drop_block():
         for y in range(3):
            for x in range(3):
                if y * 3 + x in block.shape():
-                   game_board[x + block.x][y+block.y]= block.colors
+                   game_board[x + block.x][y+block.y]= (1,1,1)#block.colors
     return can_drop
                    
 #this funtion make the left and right borders and does not let you go passed them  
